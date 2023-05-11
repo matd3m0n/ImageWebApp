@@ -6,19 +6,6 @@ from math import sin, cos, floor, ceil
 
 from tqdm import tqdm
 
-def point_span(ht):
-    all_x, all_y = [], []
-    for x,y in ht.keys():
-        all_x.append(x)
-        all_y.append(y)
-
-    print('x span: %d %d so %d'%(min(all_x), max(all_x),
-        max(all_x)-min(all_x)))
-    print('y span: %d %d so %d'%(min(all_y), max(all_y),
-        max(all_y)-min(all_y)))
-
-
-
 class Image:
     def __init__(self, fp):
         img = PIL.Image.open(fp)
@@ -103,9 +90,7 @@ class Image:
         new_img.ar = new_ar
         #new_img.show()
         return new_img
-
-        # maybe fix aliasing
-
+    
     def show(self):
         plt.imshow(self.ar)
         plt.show()

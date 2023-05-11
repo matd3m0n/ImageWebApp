@@ -29,3 +29,4 @@ The purpose of this repo is to show you can you use Flask to build a simple dyna
 ## Credits
 
 Built in colaboration with ChatGPT-3.5
+

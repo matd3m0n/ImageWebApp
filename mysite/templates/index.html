@@ -5,6 +5,9 @@
     <title>Image Upload</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
+        /**
+         * jQuery function to disable the submit button and update its value when the form is submitted.
+         */
         $(document).ready(function() {
             $('form').submit(function() {
                 $('input[type="submit"]').attr('disabled', true);
@@ -18,10 +21,13 @@
     <form action="/upload" method="POST" enctype="multipart/form-data">
         <input type="file" name="image">
         <input type="submit" value="Upload">
+
+        <!-- Hidden input field to store the value of 'yesNoOption' -->
         <input type="hidden" id="yesNoValue" name="yesNoValue">
+
         <br>
         <label for="thetaInput">Provide angle:</label>
-        <input type="text" id="thetaInput" name="thetaInput" value=30>
+        <input type="text" id="thetaInput" name="thetaInput" value="30">
 
         <br>
         Do you want to use antialiasing?
@@ -33,20 +39,23 @@
         </label>
         <br>
         <label for="sigmaInput">Provide sigma:</label>
-        <input type="text" id="sigmaInput" name="sigmaInput" value=100>
+        <input type="text" id="sigmaInput" name="sigmaInput" value="100">
         <br>
         <label for="kernelSizeInput">Provide kernel size:</label>
-        <input type="text" id="kernelSizeInput" name="kernelSizeInput" value=30x30x1 >
+        <input type="text" id="kernelSizeInput" name="kernelSizeInput" value="30x30x1">
     </form>
 
     <script>
+        /**
+         * JavaScript function to update the hidden input value based on the selected radio button.
+         * @param {string} value - The value to be set in the hidden input.
+         */
         function updateYesNoValue(value) {
             document.getElementById("yesNoValue").value = value;
         }
-
     </script>
 
-        {% if image_path %}
+    {% if image_path %}
     <h2>Uploaded Image:</h2>
     <img src="{{ url_for('static', filename=image_path) }}" alt="Uploaded Image" width="400" height="300">
 
@@ -56,8 +65,6 @@
     {% endif %}
 
     {% endif %}
-
-
 </body>
 </html>
 
