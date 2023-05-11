@@ -1,0 +1,63 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Image Upload</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('form').submit(function() {
+                $('input[type="submit"]').attr('disabled', true);
+                $('input[type="submit"]').val('Please wait a minute...');
+            });
+        });
+    </script>
+</head>
+<body>
+    <h1>Image Upload</h1>
+    <form action="/upload" method="POST" enctype="multipart/form-data">
+        <input type="file" name="image">
+        <input type="submit" value="Upload">
+        <input type="hidden" id="yesNoValue" name="yesNoValue">
+        <br>
+        <label for="thetaInput">Provide angle:</label>
+        <input type="text" id="thetaInput" name="thetaInput" value=30>
+
+        <br>
+        Do you want to use antialiasing?
+        <label>
+            <input type="radio" name="yesNoOption" value="Yes" onclick="updateYesNoValue('Yes')" checked> Yes
+        </label>
+        <label>
+            <input type="radio" name="yesNoOption" value="No" onclick="updateYesNoValue('No')"> No
+        </label>
+        <br>
+        <label for="sigmaInput">Provide sigma:</label>
+        <input type="text" id="sigmaInput" name="sigmaInput" value=100>
+        <br>
+        <label for="kernelSizeInput">Provide kernel size:</label>
+        <input type="text" id="kernelSizeInput" name="kernelSizeInput" value=30x30x1 >
+    </form>
+
+    <script>
+        function updateYesNoValue(value) {
+            document.getElementById("yesNoValue").value = value;
+        }
+
+    </script>
+
+        {% if image_path %}
+    <h2>Uploaded Image:</h2>
+    <img src="{{ url_for('static', filename=image_path) }}" alt="Uploaded Image" width="400" height="300">
+
+    {% if processed_image_path %}
+    <h2>Processed Image:</h2>
+    <img src="{{ url_for('static', filename=processed_image_path) }}" alt="Processed Image" width="400" height="300">
+    {% endif %}
+
+    {% endif %}
+
+
+</body>
+</html>
+
